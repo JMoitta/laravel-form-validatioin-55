@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('documento'); //modificar o tamanho de cpf/cnpj
+            $table->string('document_number'); //modificar o tamanho de cpf/cnpj
             $table->string('email');
             $table->string('phone');
             $table->boolean('defaulter'); //inadimplente
