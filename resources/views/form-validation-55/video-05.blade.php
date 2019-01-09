@@ -25,4 +25,4 @@
 
 
 
-<small>video 06:06</small>
+<small>video completo</small>

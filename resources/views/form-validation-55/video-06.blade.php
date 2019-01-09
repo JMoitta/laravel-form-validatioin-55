@@ -16,4 +16,4 @@
     <li><b>php artisan route:list</b></li>
 </ul>
 
-<small>video 01:55</small>
+<small>video completo</small>
