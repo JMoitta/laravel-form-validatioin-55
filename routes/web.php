@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::get('form-validation-55/{num}', function ($num) {
     return view('form-validation-55.video-' . $num);
 });
+
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin'], function () {
+    Route::resource('clients', 'ClientsController');
+});
