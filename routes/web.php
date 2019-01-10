@@ -24,3 +24,12 @@ Route::group([
     'namespace' => 'Admin'], function () {
     Route::resource('clients', 'ClientsController');
 });
+
+Route::name('meu-nome')
+    ->get('/rota-nomeada/qualquer-coisa', function(){
+    echo "Hello World!!";
+});
+
+Route::get('/rota-nomeada/qualquer-coisa', function(){
+    echo "Hello World!!";
+})->name('meu-nome1');
