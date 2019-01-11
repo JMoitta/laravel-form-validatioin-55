@@ -26,7 +26,7 @@ class ClientsController extends Controller //Controller resource
      */
     public function create()
     {
-        return view('admin.clients.create');
+        return view('admin.clients.create', ['client' => new Client()]);
     }
 
     /**
@@ -83,7 +83,7 @@ class ClientsController extends Controller //Controller resource
         $data['defaulter'] = $request->has('defaulter');
         $client->fill($data);
         $client->save();
-        
+
         return redirect()->route('clients.index');
     }
 
