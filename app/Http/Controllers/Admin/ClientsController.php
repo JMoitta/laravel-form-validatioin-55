@@ -59,12 +59,11 @@ class ClientsController extends Controller //Controller resource
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        $client = Client::findOrFail($id);
         return view('admin.clients.edit', compact('client'));
     }
 
@@ -72,12 +71,11 @@ class ClientsController extends Controller //Controller resource
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Client $client) //Route Model Binding Implicito
     {
-        $client = Client::findOrFail($id);
         $this->_validate($request);
         $data = $request->all();
         $data['defaulter'] = $request->has('defaulter');
