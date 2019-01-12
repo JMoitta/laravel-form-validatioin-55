@@ -28,7 +28,8 @@
         <td>{{ $client->phone }}</td>
         <td>{{ $client->sex }}</td>
         <td>
-          <a href="{{ route('clients.edit', ['id'=>$client->id]) }}">Editar</a>
+          <a href="{{ route('clients.edit', ['id'=>$client->id]) }}">Editar</a> |
+          <a href="{{ route('clients.show', ['id'=>$client->id]) }}">Ver</a>
         </td>
       </tr>
     @endforeach
