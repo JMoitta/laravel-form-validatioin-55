@@ -10,4 +10,10 @@
 <ul>
     <li><b>composer require doctrine/dbal:~2.5</b></li>
 </ul>
-<small>video 10:28</small>
+
+<h3>Executando a migração</h3>
+<p>Execute o comando a baixo para efetuar as alteraçoes no banco de dados</p>
+<ul>
+    <li><b>php artisan migrate</b></li>
+</ul>
+<small>video completo</small>
