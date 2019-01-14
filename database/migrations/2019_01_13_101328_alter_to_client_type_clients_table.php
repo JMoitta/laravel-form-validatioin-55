@@ -41,13 +41,15 @@ class AlterToClientTypeClientsTable extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->dropUnique('clients_document_number_unique');
             $table->date('date_birth')->change();
-            \DB::statement('ALTER TABLE clients ALTER COLUMN sex TYPE CHAR SET NOT NULL');
+            DB::statement("ALTER TABLE clients ALTER COLUMN sex SET DEFAULT 'M'");
+            DB::statement("ALTER TABLE clients ALTER COLUMN sex SET NOT NULL");
             $maritalStatus = array_keys(\App\Client::MARITAL_STATUS);
-            $maritalStatusString = array_map(function(){
+            $maritalStatusString = array_map(function($value){
                 return "'$value'";
             }, $maritalStatus);
             $maritalStatusEnum = implode(',', $maritalStatusString);
-            \DB::statement("ALTER TABLE clients ALTER COLUMN  marital_status TYPE ENUM($maritalStatusEnum) SET NOT NULL");
+            \DB::statement("ALTER TABLE clients ALTER COLUMN marital_status SET DEFAULT '1'");
+            \DB::statement("ALTER TABLE clients ALTER COLUMN marital_status SET NOT NULL");
             // $table->char('sex', 10)->change();
             // $table->enum('marital_status', array_keys(Client::MARITAL_STATUS))->change();
             $table->dropColumn('company_name');
