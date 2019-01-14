@@ -18,8 +18,15 @@ class AlterToClientTypeClientsTable extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->string('document_number')->unique()->change();
             $table->date('date_birth')->nullable()->change();
-            $table->char('sex', 10)->nullable()->change();
-            $table->enum('marital_status', array_keys(Client::MARITAL_STATUS))->nullable()->change();
+            \DB::statement('ALTER TABLE clients ALTER COLUMN sex DROP NOT NULL');
+            $maritalStatus = array_keys(\App\Client::MARITAL_STATUS);
+            $maritalStatusString = array_map(function($value){
+                return "'$value'";
+            }, $maritalStatus);
+            $maritalStatusEnum = implode(',', $maritalStatusString);
+            \DB::statement("ALTER TABLE clients ALTER COLUMN marital_status DROP NOT NULL");
+            // $table->char('sex', 10)->nullable()->change();
+            // $table->enum('marital_status', array_keys(Client::MARITAL_STATUS))->nullable()->change();
             $table->string('company_name')->nullable();
         });
     }
@@ -34,8 +41,15 @@ class AlterToClientTypeClientsTable extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->dropUnique('clients_document_number_unique');
             $table->date('date_birth')->change();
-            $table->char('sex', 10)->change();
-            $table->enum('marital_status', array_keys(Client::MARITAL_STATUS))->change();
+            \DB::statement('ALTER TABLE clients ALTER COLUMN sex TYPE CHAR SET NOT NULL');
+            $maritalStatus = array_keys(\App\Client::MARITAL_STATUS);
+            $maritalStatusString = array_map(function(){
+                return "'$value'";
+            }, $maritalStatus);
+            $maritalStatusEnum = implode(',', $maritalStatusString);
+            \DB::statement("ALTER TABLE clients ALTER COLUMN  marital_status TYPE ENUM($maritalStatusEnum) SET NOT NULL");
+            // $table->char('sex', 10)->change();
+            // $table->enum('marital_status', array_keys(Client::MARITAL_STATUS))->change();
             $table->dropColumn('company_name');
         });
     }
