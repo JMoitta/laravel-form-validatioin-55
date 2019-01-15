@@ -1,4 +1,5 @@
 {{ csrf_field() }}
+<input type="hidden" name="client_type" value="{{ $clientType }}">
 <div class="form-group">
     <label for="name">Nome</label>
     <input type="text" class="form-control" id="name" name="name" value="{{old('name', $client->name)}}">
@@ -62,7 +63,7 @@
 @else
     <div class="form-group">
         <label for="company_name">Nome Fantasia</label>
-        <input type="text" class="form-control" id="company_name" name="company_name" value="{{old('company_name', $client->company_name)}}">
+        <input type="text" class="form-control" id="company_name" name="company_name" value="{{old('company_name', $client->company_name) }}">
     </div>
 @endif
 

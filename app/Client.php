@@ -20,7 +20,7 @@ class Client extends Model
      * @var array
      */
      protected $fillable = [
-        'name', 'document_number', 'email', 'phone', 'defaulter', 'date_birth', 'sex', 'marital_status', 'physical_disability'
+        'name', 'document_number', 'email', 'phone', 'defaulter', 'date_birth', 'sex', 'marital_status', 'physical_disability', 'client_type', 'company_name',
     ];
 
     public static function getClientType($type)
