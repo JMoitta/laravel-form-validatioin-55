@@ -22,11 +22,13 @@ class ClientsController extends Controller //Controller resource
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.clients.create', ['client' => new Client()]);
+        $clientType = Client::getClientType($request->client_type);
+        return view('admin.clients.create', ['client' => new Client(), 'clientType' => $clientType]);
     }
 
     /**
